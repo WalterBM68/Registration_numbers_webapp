@@ -1,0 +1,34 @@
+<div class="registration">
+    <form action="/reg_numbers" method="POST">
+        <div class="container">
+            <h1>Reg numbers</h1>
+            {{#if messages.info}}
+                <div class="message">
+                    <h4> {{messages.info}} </h4>
+                </div>
+            {{/if}}
+            <div>
+                <input type="text" class="regNumberEntered" name="regNumeber" placeholder="Enter a registration number" value="">
+                <p>eg: CJ 123456, CA 857-624, CY 986-100</p>
+                <button class="add btn blue" type="submit">Add</button>
+            </div>
+            <div class="filter">
+                <input type="radio" name="town" class="towns" value="CY">Bellville
+                <input type="radio" name="town" class="towns" value="CJ">Paarl
+                <input type="radio" name="town" class="towns" value="CA">Cape Town
+                <input type="radio" name="town" class="towns" value="CF">Kuilsriver
+                <input type="radio" name="town" class="towns" value="all">Show all
+            </div>
+        </div>  
+    </form>
+    <form action="/delete" method="post">
+        <div class="buttons">
+            <button class="reset btn blue" type="submit">Delete</button>
+    </form>
+            <button class="show-all btn blue" type="submit">Show All</button>
+            <button class="show btn blue" type="submit">Show</button>
+        </div>
+</div>
+    <div class="regNumbers" id="regNumbers">
+        <span class="allRegNumbers" value="" type="span">{{numberPlates}}</span>
+    </div>
