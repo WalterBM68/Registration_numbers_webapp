@@ -13,22 +13,25 @@
                 <button class="add btn blue" type="submit">Add</button>
             </div>
             <div class="filter">
-                <input type="radio" name="town" class="towns" value="CY">Bellville
-                <input type="radio" name="town" class="towns" value="CJ">Paarl
-                <input type="radio" name="town" class="towns" value="CA">Cape Town
-                <input type="radio" name="town" class="towns" value="CF">Kuilsriver
-                <input type="radio" name="town" class="towns" value="all">Show all
+                <input type="radio" name="town" class="towns" value="CY" onchange="this.form.submit()">Bellville
+                <input type="radio" name="town" class="towns" value="CJ" onchange="this.form.submit()">Paarl
+                <input type="radio" name="town" class="towns" value="CA" onchange="this.form.submit()">Cape Town
+                <input type="radio" name="town" class="towns" value="CF" onchange="this.form.submit()">Kuilsriver
+                <input type="radio" name="town" class="towns" value="all" onchange="this.form.submit()">Show all
             </div>
-        </div>  
+        </div>
+    </form>
     </form>
     <form action="/delete" method="post">
         <div class="buttons">
             <button class="reset btn blue" type="submit">Delete</button>
-    </form>
-            <button class="show-all btn blue" type="submit">Show All</button>
-            <button class="show btn blue" type="submit">Show</button>
         </div>
+    </form>
 </div>
+     {{#each dispregs}}
     <div class="regNumbers" id="regNumbers">
-        <span class="allRegNumbers" value="" type="span">{{numberPlates}}</span>
+        <span class="allRegNumbers" value="" type="span">{{reg_no}}</span>
     </div>
+    {{/each}}
+
+    

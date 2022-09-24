@@ -15,7 +15,7 @@ const config = {
   connectionString: DATABASE_URL
 }
 if (process.env.NODE_ENV == 'production') {
-	config.ssl = { 
+	config.ssl = {
 		rejectUnauthorized : false
 	}
 }
@@ -41,7 +41,6 @@ const routes = Routes(regNumbers, regNumberTable);
 
 app.get('/', routes.homeRoute);
 app.post('/reg_numbers', routes.displayRegNumbers);
-app.get('/reg_numbers/:town', routes.filteredByTowns);
 app.post('/delete', routes.clearAllRegNumbers);
 
 const PORT = process.env.PORT || 1000;

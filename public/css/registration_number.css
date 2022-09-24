@@ -11,7 +11,8 @@ body {
 	margin:	auto;
     background-color: rgb(21, 94, 94);
     height: 290px;
-    border-radius: 35px;	
+    border-radius: 35px;
+	margin-bottom: 3%;	
 	/* padding: 1em; */
 }
 .container{
@@ -58,33 +59,17 @@ h1{
 	color: crimson;
 }
 
-.regNumber {
+.regNumbers {
 	background-color: yellow;
 	border: 0.1em solid black;
 	border-radius: 0.70em;
-	padding: 1em;
-	margin: 0.5em;
-	width: 5em;
+	padding: 0.4em;
+	margin: 0.3em;
+	width: auto;
 	text-align: center;
 	font-weight: bold;
-	float: left;
-}
-.regNumbers{
-    font-size: 20px;
-    /* border: 2px solid darkred; */
-	width: 50%;
-	margin: auto;
-	height: auto;
-	margin-top: 25px;
-} 
-
-
-.gp {
-	border: 2px solid lightskyblue;
-}
-
-.fs {
-	border: 2px solid orange;
+	display: inline;
+	font-size: 15px;
 }
 
 input[type='radio'] {

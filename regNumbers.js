@@ -1,12 +1,7 @@
 module.exports = function regNumbers(){
     let errorsMessages = '';
-    let allRegNumbers = '';
     let validRegex = '/^([a-zA-Z0-9 _-]+)$/';
     const regExp2 = /^((CA|CF|CY|CJ)\s([0-9]){3}\-([0-9]){3})$/;
-
-    function printRegNumbers(){
-
-    }
 
     function validateRegNumbers(numerPlates){
         if(numerPlates == ''){
@@ -23,7 +18,6 @@ module.exports = function regNumbers(){
     }
 
     return{
-        printRegNumbers,
         validateRegNumbers,
         errorMessages
     }
