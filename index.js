@@ -6,7 +6,6 @@ const flash = require('express-flash');
 const session = require('express-session');
 const pgPromise = require('pg-promise');
 const pgp = pgPromise();
-const RegNumbers = require('./regNumbers');
 const RegNumberTable = require('./database');
 const Routes = require('./routes');
 
@@ -35,9 +34,8 @@ app.use(flash());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const regNumbers = RegNumbers();
 const regNumberTable = RegNumberTable(db);
-const routes = Routes(regNumbers, regNumberTable);
+const routes = Routes(regNumberTable);
 
 app.get('/', routes.homeRoute);
 app.post('/reg_numbers', routes.displayRegNumbers);

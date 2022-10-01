@@ -1,11 +1,11 @@
-module.exports = function theRegNumbers(db){
+
+module.exports = function regNumbers(db){
     let allRegNo;
     const storeRegNumbers = async (regNo) => {
-        let storeRegs = await db.oneOrNone('SELECT reg_no FROM no_plates WHERE reg_no=$1', [regNo])
+        let storeRegs = await db.oneOrNone('SELECT reg_no FROM no_plates WHERE reg_no = $1', [regNo])
         let slice = regNo.slice(0, 2);
-        let townID = await db.oneOrNone('SELECT id FROM towns where startswith=$1', [slice]);
+        let townID = await db.oneOrNone('SELECT id FROM towns where startswith=$1;', [slice]);
         if(storeRegs == null && townID !== null){
-
             await db.manyOrNone('insert into no_plates(reg_no, town_id) values ($1, $2);', [regNo, townID.id]);
         }
     }
@@ -22,12 +22,11 @@ module.exports = function theRegNumbers(db){
         }
     }
     const getRegNumbers = async () => {
-
         allRegNo = await db.manyOrNone('select reg_no from no_plates;');
-        }
-        const displayMyRegs = async () => {
-            return allRegNo
-        }
+    }
+    const displayMyRegs = async () => {
+        return allRegNo
+    }
 
     return{
         storeRegNumbers,

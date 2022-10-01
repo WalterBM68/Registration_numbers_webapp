@@ -7,13 +7,11 @@ body {
 }
 
 .registration {
-	/* width: 75%; */
 	margin:	auto;
     background-color: rgb(21, 94, 94);
-    height: 290px;
+    height: 292px;
     border-radius: 35px;
 	margin-bottom: 3%;	
-	/* padding: 1em; */
 }
 .container{
 	text-align: center;
@@ -37,6 +35,7 @@ h1{
 	border-radius: 0.5em;
 	font-size: 0.8em;
     width: 130px;
+	/* margin-top: -2%; */
 }
 
 .btn {
@@ -44,7 +43,6 @@ h1{
 	border-radius: 0.27em;
 }
 .buttons{
-    /* margin: 15px; */
     margin-bottom: 10px;
 	text-align: center;
 	margin-top: 10px;
@@ -55,8 +53,9 @@ h1{
 }
 
 .message {
-	font-weight: bold;
-	color: crimson;
+	margin-top: -1%;
+	color: red;
+	font-size: 18px;
 }
 
 .regNumbers {
@@ -66,10 +65,8 @@ h1{
 	padding: 0.4em;
 	margin: 0.3em;
 	width: auto;
-	text-align: center;
 	font-weight: bold;
 	display: inline;
-	font-size: 15px;
 }
 
 input[type='radio'] {

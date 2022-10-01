@@ -9,7 +9,7 @@ app.use(session({
 }));
 app.use(flash());
 
-module.exports = Routes = (regNumbers, regNumberTable) => {
+module.exports = Routes = (regNumberTable) => {
     //Home route
     const homeRoute = async (req, res) => {
         const registrations = await regNumberTable.displayMyRegs();
@@ -17,26 +17,26 @@ module.exports = Routes = (regNumbers, regNumberTable) => {
             registrations 
         });
     }
+
     //displaying reg numbers & filter
     const displayRegNumbers = async (req, res) => {
         const name = req.body.regNumeber;
         const town = req.body.town;
-        let capitalizeLetters = name.toUpperCase();
-        let formatRegNumber1 = /^[CY|CJ|CA|CF]{2}\s[0-9]{3}\-[0-9]{3}$/;
-        let formatRegNumber2 = /^[CY|CJ|CA|CF]{2}\s[0-9]{6}$/;
-        let formatRegNumber3 = /^[CY|CJ|CA|CF]{2}\s[0-9]{4}$/;
-        let formatRegNumber4 = /^[CY|CJ|CA|CF]{2}\s[0-9]{3}\s[0-9]{3}$/;
-        if(formatRegNumber1.test(capitalizeLetters) == true || formatRegNumber2.test(capitalizeLetters) == true ||
-        formatRegNumber3.test(capitalizeLetters) == true || formatRegNumber4.test(capitalizeLetters) == true){
-            await regNumberTable.storeRegNumbers(name);
-        }else if(formatRegNumber1.test(capitalizeLetters) !== true || formatRegNumber2.test(capitalizeLetters) !== true ||
-        formatRegNumber3.test(capitalizeLetters) !== true || formatRegNumber4.test(capitalizeLetters) !== true){
+        let upperCase = name.toUpperCase();
+        let formatReg1 = /^[CY|CJ|CA|CF]{2}\s[0-9]{3}\-[0-9]{3}$/;
+        let formatReg2 = /^[CY|CJ|CA|CF]{2}\s[0-9]{3}\s[0-9]{3}$/;
+        let formatReg3 = /^[CY|CJ|CA|CF]{2}\s[0-9]{4}$/;
+        let formatReg4 = /^[CY|CJ|CA|CF]{2}\s[0-9]{6}$/;
+        if(formatReg1.test(upperCase) == true || formatReg2.test(upperCase) == true || formatReg3.test(upperCase) == true || formatReg4.test(upperCase) == true){
+            await regNumberTable.storeRegNumbers(upperCase);
+        }else if((formatReg1.test(upperCase) !== true || formatReg2.test(upperCase) !== true || formatReg3.test(upperCase) !== true || formatReg4.test(upperCase) !== true) && !town){
             req.flash('info', 'Please enter a valid registration number');
         }
         await regNumberTable.getRegNumbers()
         await regNumberTable.filterTowns(town)
         res.redirect('/');
     }
+
     //clearing data
     const clearAllRegNumbers = async (req, res) => {
         await regNumberTable.deleteRegNumbers();
@@ -44,6 +44,7 @@ module.exports = Routes = (regNumbers, regNumberTable) => {
         req.flash('info', 'Registration numbers have been deleted');
         res.redirect('/');
     }
+
     return{
         homeRoute,
         displayRegNumbers,
