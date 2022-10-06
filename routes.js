@@ -34,7 +34,6 @@ module.exports = Routes = (regNumberTable) => {
         }
         await regNumberTable.getRegNumbers();
         await regNumberTable.filterTowns(town);
-    
         res.redirect('/');
     }
 
