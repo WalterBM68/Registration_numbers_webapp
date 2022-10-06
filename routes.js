@@ -32,8 +32,9 @@ module.exports = Routes = (regNumberTable) => {
         }else if((formatReg1.test(upperCase) !== true || formatReg2.test(upperCase) !== true || formatReg3.test(upperCase) !== true || formatReg4.test(upperCase) !== true) && !town){
             req.flash('info', 'Please enter a valid registration number');
         }
-        await regNumberTable.getRegNumbers()
-        await regNumberTable.filterTowns(town)
+        await regNumberTable.getRegNumbers();
+        await regNumberTable.filterTowns(town);
+    
         res.redirect('/');
     }
 
