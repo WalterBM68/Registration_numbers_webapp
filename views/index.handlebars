@@ -9,7 +9,7 @@
             {{/if}}
             <div>
                 <input type="text" class="regNumberEntered" name="regNumeber" placeholder="Enter a registration number" value="">
-                <p style="color: white;">eg: CJ 123-456, CA 857-624, CY 986-100</p>
+                <p style="color: white;">eg: CJ 123-456, CA 857624, CY 986-100</p>
                 <button class="add btn blue" type="submit">Add</button>
             </div>
             <div class="filter">
@@ -27,10 +27,14 @@
         </div>
     </form>
 </div>
-{{#each registrations}}
-    <div class="regNumbers" id="regNumbers">
-        <span class="allRegNumbers" value="" type="span">{{reg_no}}</span>
-    </div>
-{{/each}}
+{{#if registrations}}
+    {{#each registrations}}
+        <div class="regNumbers" id="regNumbers">
+            <span class="allRegNumbers" value="" type="span">{{reg_no}}</span>
+        </div>
+    {{/each}}
+    {{else}}
+    <p style="color: red; font-weight: bold;">There is no registration number for this town</p>
+{{/if}}
 
     

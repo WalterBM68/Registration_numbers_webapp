@@ -23,8 +23,8 @@ describe('Testing Reg numbers database', function(){
             await regNumbers.storeRegNumbers('CY 506-018', 1);
             await regNumbers.storeRegNumbers('CJ 611-975', 2);
             await regNumbers.storeRegNumbers('CF 178-804', 4);
-            await regNumbers.getRegNumbers();
-            let results = await regNumbers.displayMyRegs();
+            await regNumbers.displayMyRegs();
+            let results = await regNumbers.getRegNumbers();
             
             assert.equal('CA 456-890', results[0].reg_no);
             assert.equal('CY 506-018', results[1].reg_no);
@@ -40,8 +40,8 @@ describe('Testing Reg numbers database', function(){
             let regNumbers = RegNumbers(db);
             await regNumbers.storeRegNumbers('CY 189-708', 1);
             await regNumbers.storeRegNumbers('CJ 220-400', 2);
-            await regNumbers.getRegNumbers();
-            let results = await regNumbers.displayMyRegs();
+            await regNumbers.displayMyRegs();
+            let results = await regNumbers.getRegNumbers();
 
             assert.equal('CY 189-708', results[0].reg_no);
             assert.equal('CJ 220-400', results[1].reg_no);
