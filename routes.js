@@ -12,9 +12,7 @@ app.use(flash());
 module.exports = Routes = (regNumberTable, db) => {
     //Home route
     const homeRoute = async (req, res) => {
-        const town = req.body.town;
-        const registrations = await regNumberTable.filterTowns(town) || await regNumberTable.getRegNumbers();
-        console.log(registrations)
+        const registrations = await regNumberTable.getFilteredTowns() || await regNumberTable.getRegNumbers();
         res.render('index',{
             registrations 
         });
@@ -45,9 +43,9 @@ module.exports = Routes = (regNumberTable, db) => {
 
     //clearing data
     const clearAllRegNumbers = async (req, res) => {
+        const town = req.body.town;
         await regNumberTable.deleteRegNumbers();
-        await regNumberTable.getFilteredTowns();
-        await regNumberTable.getRegNumbers();
+        await regNumberTable.filterTowns(town);
         req.flash('info', 'Registration numbers have been deleted');
         res.redirect('/');
     }

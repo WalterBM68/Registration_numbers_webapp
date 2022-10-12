@@ -23,8 +23,10 @@ module.exports = function regNumbers(db){
             allRegNo = await db.manyOrNone('select reg_no from no_plates where town_id=$1;', [townID.id]);
         }else if(startswith == "all"){
             allRegNo = await db.manyOrNone('SELECT reg_no FROM no_plates;');
+        }else {
+            allRegNo = await db.manyOrNone('SELECT reg_no FROM no_plates;');
         }
-        return allRegNo;
+        return allRegNo
     }
     const getFilteredTowns = async () => {
         return allRegNo;
