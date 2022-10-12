@@ -23,7 +23,6 @@ describe('Testing Reg numbers database', function(){
             await regNumbers.storeRegNumbers('CY 506-018', 1);
             await regNumbers.storeRegNumbers('CJ 611-975', 2);
             await regNumbers.storeRegNumbers('CF 178-804', 4);
-            await regNumbers.displayMyRegs();
             let results = await regNumbers.getRegNumbers();
             
             assert.equal('CA 456-890', results[0].reg_no);
@@ -40,7 +39,6 @@ describe('Testing Reg numbers database', function(){
             let regNumbers = RegNumbers(db);
             await regNumbers.storeRegNumbers('CY 189-708', 1);
             await regNumbers.storeRegNumbers('CJ 220-400', 2);
-            await regNumbers.displayMyRegs();
             let results = await regNumbers.getRegNumbers();
 
             assert.equal('CY 189-708', results[0].reg_no);
@@ -59,8 +57,7 @@ describe('Testing Reg numbers database', function(){
             await regNumbers.storeRegNumbers('CF 321-793', 4);
             await regNumbers.storeRegNumbers('CY 183-774', 1);
             await regNumbers.storeRegNumbers('CA 431-896', 3);
-            await regNumbers.filterTowns('CA');
-            let results = await regNumbers.displayMyRegs();
+            let results = await regNumbers.filterTowns('CA');
 
             assert.equal('CA 905-170', results[0].reg_no);
             assert.equal('CA 753-486', results[1].reg_no);
@@ -80,8 +77,7 @@ describe('Testing Reg numbers database', function(){
             await regNumbers.storeRegNumbers('CY 503-686', 1);
             await regNumbers.storeRegNumbers('CF 321-793', 4);
             await regNumbers.storeRegNumbers('CY 731-895', 1);
-            await regNumbers.filterTowns('CY');
-            let results = await regNumbers.displayMyRegs();
+            let results = await regNumbers.filterTowns('CY');
 
             assert.equal('CY 001-155', results[0].reg_no);
             assert.equal('CY 183-774', results[1].reg_no);
@@ -101,8 +97,7 @@ describe('Testing Reg numbers database', function(){
             await regNumbers.storeRegNumbers('CA 753-486', 3);
             await regNumbers.storeRegNumbers('CJ 102-046', 2);
             await regNumbers.storeRegNumbers('CY 183-774', 1);
-            await regNumbers.filterTowns('CJ');
-            let results = await regNumbers.displayMyRegs();
+            let results = await regNumbers.filterTowns('CJ');
 
             assert.equal('CJ 220-400', results[0].reg_no);
             assert.equal('CJ 102-046', results[1].reg_no);
@@ -120,8 +115,7 @@ describe('Testing Reg numbers database', function(){
             await regNumbers.storeRegNumbers('CF 321-793', 4);
             await regNumbers.storeRegNumbers('CY 183-774', 1);
             await regNumbers.storeRegNumbers('CA 431-896', 3);
-            await regNumbers.filterTowns('CF');
-            let results = await regNumbers.displayMyRegs();
+            let results = await regNumbers.filterTowns('CF');
 
             assert.equal('CF 321-793', results[0].reg_no);
             await db.none('delete from no_plates;');
@@ -137,8 +131,7 @@ describe('Testing Reg numbers database', function(){
             await regNumbers.storeRegNumbers('CY 183-774', 1);
             await regNumbers.storeRegNumbers('CA 753-486', 3);
             await regNumbers.storeRegNumbers('CF 321-793', 4);
-            await regNumbers.filterTowns('all');
-            let results = await regNumbers.displayMyRegs();
+            let results = await regNumbers.filterTowns('all');
 
             assert.equal('CJ 220-400', results[0].reg_no);
             assert.equal('CA 905-170', results[1].reg_no);
@@ -158,8 +151,7 @@ describe('Testing Reg numbers database', function(){
             await regNumbers.storeRegNumbers('CY 183-774', 1);
             await regNumbers.storeRegNumbers('CA 753-486', 3);
             await regNumbers.storeRegNumbers('CF 321-793', 4);
-            await regNumbers.filterTowns('CJ');
-            let results = await regNumbers.displayMyRegs();
+            let results = await regNumbers.filterTowns('CJ');
 
             assert.equal(null, results.reg_no);
             await db.none('delete from no_plates;');

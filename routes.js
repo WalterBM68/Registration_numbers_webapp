@@ -9,10 +9,12 @@ app.use(session({
 }));
 app.use(flash());
 
-module.exports = Routes = (regNumberTable) => {
+module.exports = Routes = (regNumberTable, db) => {
     //Home route
     const homeRoute = async (req, res) => {
-        const registrations = await regNumberTable.displayMyRegs() || await regNumberTable.getRegNumbers();
+        const town = req.body.town;
+        const registrations = await regNumberTable.filterTowns(town) || await regNumberTable.getRegNumbers();
+        console.log(registrations)
         res.render('index',{
             registrations 
         });
@@ -31,12 +33,9 @@ module.exports = Routes = (regNumberTable) => {
 
         if(checkIfRegNoExists.count == 1 && !town){
             req.flash('info', 'This registration number exist!');
-        }
-       
-        if(formatReg1.test(upperCase) == true || formatReg2.test(upperCase) == true || formatReg3.test(upperCase) == true || formatReg4.test(upperCase) == true){
-            await regNumberTable.storeRegNumbers(upperCase);
-            await regNumberTable.getRegNumbers();
-            await regNumberTable.displayMyRegs();
+        } 
+        if((formatReg1.test(upperCase) == true || formatReg2.test(upperCase) == true || formatReg3.test(upperCase) == true || formatReg4.test(upperCase) == true) && !town){
+            await regNumberTable.storeRegNumbers(upperCase); 
         }else if((formatReg1.test(upperCase) !== true || formatReg2.test(upperCase) !== true || formatReg3.test(upperCase) !== true || formatReg4.test(upperCase) !== true) && !town){
             req.flash('info', 'Please enter a valid registration number');
         }
@@ -46,9 +45,8 @@ module.exports = Routes = (regNumberTable) => {
 
     //clearing data
     const clearAllRegNumbers = async (req, res) => {
-        await regNumberTable.getRegNumbers();
-        await regNumberTable.displayMyRegs();
         await regNumberTable.deleteRegNumbers();
+        await regNumberTable.getRegNumbers();
         req.flash('info', 'Registration numbers have been deleted');
         res.redirect('/');
     }
