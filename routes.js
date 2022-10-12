@@ -46,6 +46,7 @@ module.exports = Routes = (regNumberTable, db) => {
     //clearing data
     const clearAllRegNumbers = async (req, res) => {
         await regNumberTable.deleteRegNumbers();
+        await regNumberTable.getFilteredTowns();
         await regNumberTable.getRegNumbers();
         req.flash('info', 'Registration numbers have been deleted');
         res.redirect('/');
