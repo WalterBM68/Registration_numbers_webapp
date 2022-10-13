@@ -19,7 +19,7 @@ if (process.env.NODE_ENV == 'production') {
 	}
 }
 const db = pgp(config);
-module.exports = db;
+
 app.engine("handlebars", hbs.engine({ extname: "handlebars", layoutsDir: __dirname + '/views/layouts' }));
 app.set('view engine', 'handlebars');
 app.use(express.static("public"));
@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const regNumberTable = RegNumberTable(db);
-const routes = Routes(regNumberTable, db);
+const routes = Routes(regNumberTable);
 
 app.get('/', routes.homeRoute);
 app.post('/reg_numbers', routes.displayRegNumbers);

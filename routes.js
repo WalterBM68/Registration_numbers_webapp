@@ -9,7 +9,7 @@ app.use(session({
 }));
 app.use(flash());
 
-module.exports = Routes = (regNumberTable, db) => {
+module.exports = Routes = (regNumberTable) => {
     //Home route
     const homeRoute = async (req, res) => {
         const registrations = await regNumberTable.getFilteredTowns() || await regNumberTable.getRegNumbers();
